@@ -1,24 +1,5 @@
 import random
 
-def SmallestNumInc(arr):
-    if len(arr) == 1:
-        return arr[0]
-    x = SmallestNum(arr[:-1])
-    if x > arr[-1]:
-        return arr[-1]
-    else:
-        return x
-
-def SmallestNumDAC(arr):
-    if len(arr) == 1:
-        return arr[0]
-    l = SmallestNumDAC(arr[:len(arr)//2])
-    r = SmallestNumDAC(arr[len(arr)//2:])
-    if l > r:
-        return r
-    else:
-        return l
-
 def SmallestThree(arr):
     if len(arr) == 2:
         if arr[0] < arr[1]:
