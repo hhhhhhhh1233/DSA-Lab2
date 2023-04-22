@@ -57,37 +57,50 @@ def BiggestDiffCandidate(arr):
 
     return candidates
 	
-testTimeTaken = []
+#testTimeTaken = []
+#arraySize = []
+#for i in range(15):
+#    testArr = []
+#    for j in range(int(math.pow(2,i+1))):
+#        testArr.append(random.randint(-99,99))
+#
+#    startTime = time.time()
+#    arr = BiggestDiffCandidate(testArr)
+#    testTimeTaken.append(time.time() - startTime)
+#    arraySize.append(math.pow(2,i+1))
+#
+#    if verifyBiggestDiff(arr) != verifyBiggestDiff(testArr):
+#        print("\nERROR: Did not return expected result!")
+#        quit()
+#print("Correct!")
+#
+#plt.plot(arraySize,testTimeTaken)
+#plt.show()
+testTimeTakenR = []
+testTimeTakenF = []
 arraySize = []
-for i in range(15):
+for i in range(8):
     testArr = []
-    for j in range(int(math.pow(2,i+1))):
-        testArr.append(random.randint(-99,99))
+    for j in range(int(math.pow(2, i+1))):
+        testArr.append(random.randint(1,99))
+    arraySize.append(math.pow(2, i+1))
+    #print("WRONG SIZE") if math.log(len(testArr),2)%1 != 0 else print("Acceptable size")
+    #print(f"Searching array: {testArr}")
 
-    startTime = time.time()
+    startTimeR = time.time()
     arr = BiggestDiffCandidate(testArr)
-    testTimeTaken.append(time.time() - startTime)
-    arraySize.append(math.pow(2,i+1))
+    endTimeR = time.time()
+    print(f"\nIt's within this chunk {arr}")
 
-    if verifyBiggestDiff(arr) != verifyBiggestDiff(testArr):
-        print("\nERROR: Did not return expected result!")
-        quit()
-print("Correct!")
+    print(f"The best candidates: {verifyBiggestDiff(testArr)}")
+    startTimeV = time.time()
+    verifArr = verifyBiggestDiff(testArr)
+    endTimeV = time.time()
 
-plt.plot(arraySize,testTimeTaken)
+    print("Correct!") if verifyBiggestDiff(arr) == verifArr else print("Wrong!")
+    print(f"Recursive time: {endTimeR - startTimeR}\nFactorial time: {endTimeV - startTimeV}")
+    testTimeTakenR.append(endTimeR - startTimeR)
+    testTimeTakenF.append(endTimeV - startTimeV)
+plt.plot(arraySize, testTimeTakenR)
+plt.plot(arraySize, testTimeTakenF)
 plt.show()
-
-#testArr = []
-#for i in range(16):
-#    testArr.append(random.randint(1,99))
-
-#print("WRONG SIZE") if math.log(len(testArr),2)%1 != 0 else print("Acceptable size")
-#print(f"Searching array: {testArr}")
-
-#arr = BiggestDiffCandidate(testArr)
-
-#print(f"\nIt's within this chunk {arr}")
-
-#print(f"The best candidates: {verifyBiggestDiff(testArr)}")
-
-#print("Correct!") if verifyBiggestDiff(arr) == verifyBiggestDiff(testArr) else print("Wrong!")
