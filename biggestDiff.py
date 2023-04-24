@@ -13,10 +13,10 @@ def verifyBiggestDiff(arr):
 
 def BiggestDiffCandidate(arr):
     if len(arr) == 2:
-        return arr
+        return arr[1] - arr[0], arr
     
-    lArr = BiggestDiffCandidate(arr[:len(arr)//2])
-    rArr = BiggestDiffCandidate(arr[len(arr)//2:])
+    lDiff, lArr = BiggestDiffCandidate(arr[:len(arr)//2])
+    rDiff, rArr = BiggestDiffCandidate(arr[len(arr)//2:])
 
     wholeArr = lArr + rArr
     #print(f"\nwholeArr: {wholeArr}")
@@ -55,7 +55,7 @@ def BiggestDiffCandidate(arr):
 
     #print(f"Added backup candidates: {candidates}")
 
-    return candidates
+    return biggestDiff, candidates
 	
 #testTimeTaken = []
 #arraySize = []
@@ -79,7 +79,7 @@ def BiggestDiffCandidate(arr):
 testTimeTakenR = []
 testTimeTakenF = []
 arraySize = []
-for i in range(8):
+for i in range(12):
     testArr = []
     for j in range(int(math.pow(2, i+1))):
         testArr.append(random.randint(1,99))
@@ -88,9 +88,9 @@ for i in range(8):
     #print(f"Searching array: {testArr}")
 
     startTimeR = time.time()
-    arr = BiggestDiffCandidate(testArr)
+    diff, arr = BiggestDiffCandidate(testArr)
     endTimeR = time.time()
-    print(f"\nIt's within this chunk {arr}")
+    print(f"\nBiggest diff is {diff}")
 
     print(f"The best candidates: {verifyBiggestDiff(testArr)}")
     startTimeV = time.time()
