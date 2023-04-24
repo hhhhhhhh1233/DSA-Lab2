@@ -3,7 +3,6 @@ import random
 def SmallestThreeSmart(arr):
     if len(arr) == 3:
         return sorted(arr)
-        x, y = SmallestThreeSmart(arr[:-1])
     x, y, z = SmallestThreeSmart(arr[:-1])
     return sorted([x,y,z,arr[-1]])[:-1]
 
