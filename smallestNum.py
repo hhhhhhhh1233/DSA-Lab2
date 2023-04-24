@@ -1,5 +1,12 @@
 import random
 
+def SmallestThreeSmart(arr):
+    if len(arr) == 3:
+        return sorted(arr)
+        x, y = SmallestThree(arr[:-1])
+    x, y, z = SmallestThree(arr[:-1])
+    return sorted([x,y,z,arr[-1]])[:-1]
+
 def SmallestThree(arr):
     if len(arr) == 2:
         if arr[0] < arr[1]:
