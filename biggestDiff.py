@@ -12,14 +12,19 @@ def verifyBiggestDiff(arr):
     return candidates
 
 def BiggestDiffCandidate(arr):
+    # Returns the array of length 2
     if len(arr) == 2:
         return arr[1] - arr[0], arr
     
+    # Recursively calculates the best diffs and candidates
     lDiff, lArr = BiggestDiffCandidate(arr[:len(arr)//2])
     rDiff, rArr = BiggestDiffCandidate(arr[len(arr)//2:])
 
+    # Adds the halfs together
     wholeArr = lArr + rArr
     #print(f"\nwholeArr: {wholeArr}")
+	
+    # Calculates all possible differences and finds the largest one and its candidates
     candidates = [wholeArr[0], wholeArr[1]]
     biggestDiff = wholeArr[1] - wholeArr[0]
     candidatesPos = [0, 1]	
@@ -31,11 +36,11 @@ def BiggestDiffCandidate(arr):
                 candidatesPos = [i, 1+j+i]
                 #print("The candidates ", wholeArr[i], wholeArr[j+i])
             #print(iElem,jElem)
-
-
     #print(f"Current candidates: {candidates}")
     #print(f"candidatesPos: {candidatesPos}")
     #print(f"Searching for a lower candidate in {wholeArr[candidatesPos[1]+1:]}")
+
+    # Calculates a backup i above the j index
     backupI = wholeArr[candidatesPos[1]]
     for i in wholeArr[candidatesPos[1]+1:]:
         if i < backupI:
@@ -44,6 +49,7 @@ def BiggestDiffCandidate(arr):
     #print(f"Lower candidate: {backupI}")
     candidates.append(backupI)
     
+    # Calculates a backup j below the i index
     #print(f"Searching for a higher candidate in {wholeArr[:candidatesPos[0]]}")
     backupJ = wholeArr[candidatesPos[0]]
     for j in wholeArr[:candidatesPos[0]]:
