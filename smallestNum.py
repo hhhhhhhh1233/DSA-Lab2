@@ -33,6 +33,33 @@ def SmallestThree(arr):
     else:
         return x, y, z
 
+def SmallestThreeNoRecur(arr):
+    if arr[0] > arr[1]:
+        x, y = arr[0], arr[1]
+    else:
+        x, y = arr[1], arr[0]
+
+    if arr[2] > y:
+        z = arr[2]
+    elif arr[2] > x:
+        y, z = z, arr[2]
+    elif arr[2] < x:
+        x, y, z = arr[2], x, y
+
+    for i in arr[3:]:
+        if i < z:
+            if i < y:
+                if i < x:
+                    x, y, z = i, x, y
+                else:
+                    x, y, z = x, i, y
+            else:
+                x, y, z = x, y, i
+        else:
+            x, y, z = x, y, z
+
+    return x,y,z    
+  
 for i in range(10):
     testArr = []
     for j in range(10):
